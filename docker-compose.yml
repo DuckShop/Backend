@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:13 # You can specify any version, but 13 is a stable release
+    environment:
+      POSTGRES_USER: weather_user
+      POSTGRES_PASSWORD: your_password
+      POSTGRES_DB: weather_app
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432" # Exposes PostgreSQL on port 5432
+    networks:
+      - weather-network
+
+volumes:
+  postgres_data:
+
+networks:
+  weather-network:
+    driver: bridge
